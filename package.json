@@ -3,12 +3,13 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "predev": "npm run setup",
     "dev": "next",
     "build": "next build",
-    "setup": "npx ts-node ./scripts/setup.ts",
+    "postbuild": "npm run setup",
     "start": "next start",
-    "typecheck": "tsc",
-    "load-data": "npx ts-node ./scripts/loadData.ts"
+    "setup": "npx ts-node ./scripts/setup.ts",
+    "typecheck": "tsc"
   },
   "dependencies": {
     "@next/font": "13.1.1",

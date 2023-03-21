@@ -1,8 +1,21 @@
 import Head from "next/head";
 import Image from "next/image";
-import products from "../db/products.json";
+import { useEffect, useState } from 'react'
+import { Product } from '../db/models/product'
 
 export default function Home() {
+  const [products, setProducts] = useState<Product[]>([]);
+
+  const fetchProducts = async () => {
+    const response = await fetch("/api/store");
+    const { result } = await response.json();
+    setProducts(result);
+  }
+
+  useEffect(() => {
+    fetchProducts();
+  }, []);
+
   return (
     <>
       <Head>

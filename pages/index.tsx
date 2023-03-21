@@ -1,45 +1,12 @@
 import Head from "next/head";
 import Image from "next/image";
 import products from "../db/products.json";
-import { useEffect, useState } from "react";
-import { Product } from "../db/models/store";
 
 export default function Home() {
-  const [products, setProducts] = useState<Product[]>([]);
-  const [searchInput, setSearchInput] = useState<string>();
-
-    const fetchProducts = async () => {
-    try {
-      const response = await fetch("/api/store");
-      const { result } = await response.json();
-      if (result) {
-        setProducts(result);
-      }
-    } catch (e) {
-      console.log(`Error: ${e}`);
-    }
-  };
-
-   const searchQuery = async () => {
-    try {
-      const response = await fetch(`/api/store/search?query=${encodeURI(searchInput)}`);
-      const { result } = await response.json();
-      if (result) {
-        setProducts(result);
-      }
-    } catch (e) {
-      console.log(`Error: ${e}`);
-    }
-  };
-  
-  useEffect(() => {
-    fetchProducts();
-  }, []);
-
   return (
     <>
       <Head>
-        <title>Real-time full-text seach with Next.js and Tigris demo</title>
+        <title>Tigris demo with Next.js</title>
         <meta
           name="description"
           content="Real-time full-text seach with Next.js and Tigris demo"
@@ -60,8 +27,6 @@ export default function Home() {
                   type="search"
                   placeholder="Search"
                   aria-label="Search"
-                  onKeyUp={searchQuery}
-                  onChange={(e) => setSearchInput(e.target.value)}
                 />
               </form>
             </div>

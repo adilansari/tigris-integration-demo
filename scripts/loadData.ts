@@ -8,7 +8,7 @@ import productsJson from "../db/products.json";
 async function main() {
   const products: Array<Product> = productsJson as Array<Product>;
   const productsCollection = tigrisDB.getCollection<Product>(Product);
-  const inserted = await productsCollection.insertMany(products);
+  const inserted = await productsCollection.insertOrReplaceMany(products);
   console.log(inserted);
 }
 
